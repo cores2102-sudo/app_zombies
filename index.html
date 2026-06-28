@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zombies Helper V1</title>
+    <title>Zombies Cheat Sheet Pro</title>
     <style>
         *, *::before, *::after {
             box-sizing: border-box;
@@ -16,48 +16,77 @@
             padding: 0;
             -webkit-tap-highlight-color: transparent;
         }
-        @page {
-            size: A4;
-            margin: 15mm 12mm;
-            background-color: #11141a;
-        }
         .container {
             max-width: 600px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 15px;
         }
         header {
             text-align: center;
-            padding: 20px 0;
+            padding: 15px 0;
             border-bottom: 2px solid #2d3748;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         h1 {
             color: #ff4444;
-            font-size: 24px;
+            font-size: 22px;
             margin: 0;
             text-transform: uppercase;
             letter-spacing: 2px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
-        p.subtitle {
-            color: #a0aec0;
-            font-size: 14px;
-            margin: 5px 0 0 0;
+        .selector-mapa {
+            margin-bottom: 25px;
         }
         .section-title {
             color: #ff9900;
-            font-size: 16px;
+            font-size: 15px;
             text-transform: uppercase;
             margin-bottom: 12px;
             border-left: 4px solid #ff9900;
             padding-left: 8px;
+            font-weight: bold;
+        }
+        select {
+            width: 100%;
+            background-color: #1a202c;
+            color: #fff;
+            border: 2px solid #4a5568;
+            padding: 15px;
+            font-size: 16px;
+            border-radius: 12px;
+            font-weight: bold;
+            outline: none;
+            cursor: pointer;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        select:focus {
+            border-color: #ff9900;
+        }
+        .select-wrapper {
+            position: relative;
+        }
+        .select-wrapper::after {
+            content: '▼';
+            font-size: 12px;
+            color: #a0aec0;
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+        .map-content {
+            display: none;
+        }
+        .map-content.active {
+            display: block;
         }
         .grid {
             display: table;
             width: 100%;
-            border-spacing: 10px;
-            margin-bottom: 20px;
+            border-spacing: 8px;
+            margin-bottom: 15px;
         }
         .grid-row {
             display: table-row;
@@ -72,8 +101,8 @@
             background-color: #1a202c;
             border: 2px solid #4a5568;
             color: #fff;
-            padding: 18px 10px;
-            font-size: 16px;
+            padding: 16px 10px;
+            font-size: 15px;
             font-weight: bold;
             border-radius: 12px;
             cursor: pointer;
@@ -88,14 +117,17 @@
             background-color: #0d1117;
             border: 2px dashed #ff4444;
             border-radius: 12px;
-            padding: 25px 15px;
+            padding: 20px 15px;
             text-align: center;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: bold;
             color: #00ffcc;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             letter-spacing: 1px;
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.6);
+            min-height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .notes-box {
             background-color: #1a202c;
@@ -115,54 +147,159 @@
         li strong {
             color: #fff;
         }
+        .placeholder-text {
+            color: #718096;
+            font-style: italic;
+            font-size: 14px;
+            text-align: center;
+            padding: 20px;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
         <header>
-            <h1>Zombies Cheat Sheet</h1>
-            <p class="subtitle">Toca un botón para ver la solución instantánea</p>
+            <h1>Zombies Cheat Sheet V2</h1>
         </header>
 
-        <div class="section-title">Códigos de Terminus / Lab</div>
-        
-        <div class="grid">
-            <div class="grid-row">
-                <div class="grid-item">
-                    <button class="btn" onclick="resolver('17 - 14 - 02 - 10')">🚀 ROCKET</button>
-                </div>
-                <div class="grid-item">
-                    <button class="btn" onclick="resolver('04 - 13 - 06 - 08')">⚙️ ENGINE</button>
-                </div>
+        <div class="selector-mapa">
+            <div class="section-title">Selecciona el Mapa Activo</div>
+            <div class="select-wrapper">
+                <select id="mapSelect" onchange="cambiarMapa()">
+                    <option value="" disabled selected>-- Elige un mapa --</option>
+                    <option value="terminus">Terminus</option>
+                    <option value="liberty">Liberty Falls</option>
+                    <option value="citadelle">Citadelle des Morts</option>
+                    <option value="tomb">The Tomb</option>
+                    <option value="shattered">Shattered Veil</option>
+                    <option value="reckoning">Reckoning</option>
+                    <option value="ashes">Ashes of the Damned</option>
+                    <option value="astra">Astra Malorum</option>
+                    <option value="paradox">Paradox Junction</option>
+                    <option value="totenreich">Totënreich</option>
+                    <option value="kowakujo">Kowakujō</option>
+                </select>
             </div>
-            <div class="grid-row">
-                <div class="grid-item">
-                    <button class="btn" onclick="resolver('11 - 00 - 20 - 13')">🛫 LAUNCH</button>
-                </div>
-                <div class="grid-item">
-                    <button class="btn" onclick="resolver('22 - 04 - 00 - 15')">⚔️ WEAPON</button>
+        </div>
+
+        <div class="section-title">Solucionador / Datos</div>
+        <div class="screen" id="display">SELECCIONA UN MAPA PARA EMPEZAR</div>
+
+        <!-- CONTENIDO DINÁMICO POR MAPA -->
+        
+        <!-- TERMINUS -->
+        <div id="map-terminus" class="map-content">
+            <div class="section-title">Puzles de Terminus</div>
+            <div class="grid">
+                <div class="grid-row">
+                    <div class="grid-item"><button class="btn" onclick="resolver('Código Computadora: 17 - 14 - 02')">💻 Código Base</button></div>
+                    <div class="grid-item"><button class="btn" onclick="resolver('Válvulas: 12 -> 3 -> 6')">⚙️ Válvulas</button></div>
                 </div>
             </div>
         </div>
 
-        <div class="section-title">Resultado del Puzle</div>
-        <div class="screen" id="display">--- ESPERANDO ACCIÓN ---</div>
+        <!-- LIBERTY FALLS -->
+        <div id="map-liberty" class="map-content">
+            <div class="section-title">Puzles de Liberty Falls</div>
+            <div class="grid">
+                <div class="grid-row">
+                    <div class="grid-item"><button class="btn" onclick="resolver('Código Caja Fuerte: 24 - 36 - 12')">🔓 Caja Fuerte</button></div>
+                    <div class="grid-item"><button class="btn" onclick="resolver('Orden de trampas: Electricidad primero')">⚡ Trampas</button></div>
+                </div>
+            </div>
+        </div>
 
-        <div class="section-title">Chuleta Rápida</div>
+        <!-- CITADELLE DES MORTS -->
+        <div id="map-citadelle" class="map-content">
+            <div class="section-title">Citadelle des Morts</div>
+            <p class="placeholder-text">Botones y puzles de Citadelle listos para añadir...</p>
+        </div>
+
+        <!-- THE TOMB -->
+        <div id="map-tomb" class="map-content">
+            <div class="section-title">The Tomb</div>
+            <p class="placeholder-text">Botones y puzles de The Tomb listos para añadir...</p>
+        </div>
+
+        <!-- SHATTERED VEIL -->
+        <div id="map-shattered" class="map-content">
+            <div class="section-title">Shattered Veil</div>
+            <p class="placeholder-text">Botones y puzles de Shattered Veil listos para añadir...</p>
+        </div>
+
+        <!-- RECKONING -->
+        <div id="map-reckoning" class="map-content">
+            <div class="section-title">Reckoning</div>
+            <p class="placeholder-text">Botones y puzles de Reckoning listos para añadir...</p>
+        </div>
+
+        <!-- ASHES OF THE DAMNED -->
+        <div id="map-ashes" class="map-content">
+            <div class="section-title">Puzles de Ashes of the Damned</div>
+            <div class="grid">
+                <div class="grid-row">
+                    <div class="grid-item"><button class="btn" onclick="resolver('ROCKET: 17-14-02-10')">🚀 ROCKET</button></div>
+                    <div class="grid-item"><button class="btn" onclick="resolver('ENGINE: 04-13-06-08')">⚙️ ENGINE</button></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-item"><button class="btn" onclick="resolver('LAUNCH: 11-00-20-13')">🛫 LAUNCH</button></div>
+                    <div class="grid-item"><button class="btn" onclick="resolver('WEAPON: 22-04-00-15')">⚔️ WEAPON</button></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ASTRA MALORUM -->
+        <div id="map-astra" class="map-content">
+            <div class="section-title">Astra Malorum</div>
+            <p class="placeholder-text">Botones y puzles de Astra Malorum listos para añadir...</p>
+        </div>
+
+        <!-- PARADOX JUNCTION -->
+        <div id="map-paradox" class="map-content">
+            <div class="section-title">Paradox Junction</div>
+            <p class="placeholder-text">Botones y puzles de Paradox Junction listos para añadir...</p>
+        </div>
+
+        <!-- TOTENREICH -->
+        <div id="map-totenreich" class="map-content">
+            <div class="section-title">Totënreich</div>
+            <p class="placeholder-text">Botones y puzles de Totënreich listos para añadir...</p>
+        </div>
+
+        <!-- KOWAKUJO -->
+        <div id="map-kowakujo" class="map-content">
+            <div class="section-title">Kowakujō</div>
+            <p class="placeholder-text">Botones y puzles de Kowakujō listos para añadir...</p>
+        </div>
+
+        <div class="section-title">Notas fijas</div>
         <div class="notes-box">
             <ul>
-                <li><strong>Diales / Válvulas:</strong> Traducir siempre a horas de reloj (12, 3, 6, 9).</li>
-                <li><strong>Recordatorio:</strong> Usa el botón de marcar (Ping) en los símbolos para no olvidarlos.</li>
-                <li><strong>iPhone:</strong> Dale a "Añadir a pantalla de inicio" en Safari para usar como App nativa.</li>
+                <li>Al cambiar de mapa, la pantalla de resultado se reinicia.</li>
+                <li>Usa el menú desplegable superior para alternar rápido entre mapas.</li>
             </ul>
         </div>
     </div>
 
     <script>
+        function cambiarMapa() {
+            var selector = document.getElementById("mapSelect");
+            var mapaSeleccionado = selector.value;
+            
+            var contenidos = document.getElementsByClassName("map-content");
+            for (var i = 0; i < contenidos.length; i++) {
+                contenidos[i].classList.remove("active");
+            }
+            
+            if (mapaSeleccionado) {
+                document.getElementById("map-" + mapaSeleccionado).classList.add("active");
+                document.getElementById("display").innerText = "--- ESPERANDO ACCIÓN ---";
+            }
+        }
+
         function resolver(codigo) {
             document.getElementById('display').innerText = codigo;
-            // Breve vibración en móviles si está disponible para confirmar la pulsación
             if (navigator.vibrate) {
                 navigator.vibrate(50);
             }
