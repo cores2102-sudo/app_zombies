@@ -341,6 +341,17 @@
             if (navigator.vibrate) {
                 navigator.vibrate(50);
             }
+        var codPlanetas = [];
+        function addPlaneta(num) {
+            if(codPlanetas.length < 3) {
+                codPlanetas.push(num);
+                document.getElementById('display').innerText = "CÓDIGO PLANETAS: " + codPlanetas.join(" - ");
+            }
+        }
+        function limpiarPlanetas() {
+            codPlanetas = [];
+            document.getElementById('display').innerText = "--- ESPERANDO ACCIÓN ---";
+        }
         }
     </script>
 </body>
