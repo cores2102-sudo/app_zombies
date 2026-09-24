@@ -250,9 +250,47 @@
         </div>
 
         <!-- ASTRA MALORUM -->
+        <!-- ASTRA MALORUM -->
         <div id="map-astra" class="map-content">
-            <div class="section-title">Astra Malorum</div>
-            <p class="placeholder-text">Botones y puzles de Astra Malorum listos para añadir...</p>
+            <div class="section-title">1. Conversor de Planetas (O.S.C.A.R.)</div>
+            <p style="font-size:12px; color:#a0aec0; margin-top:-5px;">Toca los 3 planetas que escuches en el audio para formar tu código:</p>
+            <div class="grid">
+                <div class="grid-row">
+                    <div class="grid-item"><button class="btn" onclick="addPlaneta('1')">🔴 Mercurio (1)</button></div>
+                    <div class="grid-item"><button class="btn" onclick="addPlaneta('2')">🟡 Venus (2)</button></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-item"><button class="btn" onclick="addPlaneta('3')">🔵 Tierra (3)</button></div>
+                    <div class="grid-item"><button class="btn" onclick="addPlaneta('4')">🟠 Marte (4)</button></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-item"><button class="btn" onclick="addPlaneta('5')">🟤 Júpiter (5)</button></div>
+                    <div class="grid-item"><button class="btn" onclick="addPlaneta('6')">🟡 Saturno (6)</button></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-item"><button class="btn" onclick="addPlaneta('7')">💎 Urano (7)</button></div>
+                    <div class="grid-item"><button class="btn" onclick="addPlaneta('8')">🌊 Neptuno (8)</button></div>
+                </div>
+            </div>
+            <button class="btn" style="background-color:#4a1515; border-color:#ff4444; margin-bottom:15px;" onclick="limpiarPlanetas()">🔄 Borrar Selección</button>
+
+            <div class="section-title">2. Puzle de Bustos y Libros</div>
+            <div class="notes-box" style="margin-bottom:15px;">
+                <ul>
+                    <li><strong>Busto 1:</strong> Estantería con <i>Ash & Bone</i>, <i>Echoes of Andromeda</i>, <i>The Unknowable Void</i>.</li>
+                    <li><strong>Busto 2:</strong> Estantería con <i>The Black Veil</i>, <i>Witchlight Codex</i>, <i>Silence at Singularity</i>.</li>
+                    <li><strong>Busto 3:</strong> Estantería con <i>Pyramids of Cydonia</i>, <i>Solaris Requiem</i>, <i>Starlight Legacy</i>.</li>
+                    <li><strong>Regla:</strong> Cuenta cuántos libros de la lista en la pantalla de la Machina coinciden con la estantería de cada busto. Ese número es la cantidad de veces que debes girarlo.</li>
+                </ul>
+            </div>
+
+            <div class="section-title">3. Ubicación de Notas para Alinear Planetas</div>
+            <div class="grid">
+                <div class="grid-row">
+                    <div class="grid-item"><button class="btn" onclick="resolver('Saturno: Nota en mesa del Archivo de Orbis')">📜 Nota Saturno</button></div>
+                    <div class="grid-item"><button class="btn" onclick="resolver('Neptuno: Nota en mesa de El Luminarium')">📜 Nota Neptuno</button></div>
+                </div>
+            </div>
         </div>
 
         <!-- PARADOX JUNCTION -->
